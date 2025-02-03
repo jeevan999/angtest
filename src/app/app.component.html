@@ -9,3 +9,14 @@
 <input [(ngModel)]="newState" placeholder="Enter new state" />
 <button (click)="updateState()">Update State</button>
 <p>{{ currentState }}</p>
+
+<!-- Use the new @for syntax -->
+@for (val of documenting; track val) {
+  <p>{{ val }}</p>
+}
+
+<!-- two way data binding -->
+ <input [(ngModel)]="name" type="text">
+ <p>{{name}}</p>
+<!-- event binding -->
+ <button (click)="handleClicking()">Button</button>

@@ -1,8 +1,9 @@
-import { Component,OnInit } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { Router } from '@angular/router';
 import { WorkserviceService } from './services/workservice.service';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +11,35 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
   newState: any;
   currentState: string = '';
-  constructor(private router: Router, private stateService: WorkserviceService) {}
+  name: string = ''
+  documenting: number[] = [2, 3, 4, 5, 6];
+  constructor(private router: Router, private stateService: WorkserviceService) { }
+  ngOnDestroy(): void {
+    throw new Error('Method not implemented.');
+  }
+  ngAfterViewChecked(): void {
+    throw new Error('Method not implemented.');
+  }
+  ngAfterViewInit(): void {
+    throw new Error('Method not implemented.');
+  }
+  ngAfterContentChecked(): void {
+    throw new Error('Method not implemented.');
+  }
+  ngAfterContentInit(): void {
+    throw new Error('Method not implemented.');
+  }
+  ngDoCheck(): void {
+    throw new Error('Method not implemented.');
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    throw new Error('Method not implemented.');
+  }
+
   ngOnInit(): void {
-    // Subscribe to the state observable
     this.stateService.userState$.subscribe((state) => {
       this.currentState = state;
     });
@@ -28,5 +52,9 @@ export class AppComponent implements OnInit {
   updateState(): void {
     this.stateService.setUserState(this.newState);
     this.newState = ''; // Clear the input
+  }
+
+  handleClicking(): void {
+    alert('to the enter')
   }
 }
